@@ -49,4 +49,13 @@ router.post("/realTimeProducts", async (req, res) => {
   res.redirect("/realTimeProducts");
 });
 
+router.delete("/realTimeProducts/:id", async (req, res) => {
+  const { id } = req.params;
+  const deletedProduct = await productManager.deleteProduct(id);
+  if (!deletedProduct) {
+    return res.status(404).json({ error: "Producto no encontrado" });
+  }
+  res.status(204).send();
+});
+
 export default router;

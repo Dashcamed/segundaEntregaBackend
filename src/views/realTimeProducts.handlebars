@@ -1,24 +1,16 @@
 <h1>Products Manager</h1>
 <h2>Create Product</h2>
-<form id="createProductForm" action="/realTimeProducts" method="POST">
-  <input type="text" name="title" placeholder="Title" required />
-  <input type="text" name="description" placeholder="Description" required />
-  <input type="text" name="category" placeholder="Category" required />
-  <input type="number" name="price" placeholder="Price" required />
-  <input type="number" name="stock" placeholder="Stock" required />
-  <button type="submit">Add Product</button>
+<form class="form" id="createProductForm" action="/" method="POST">
+  <input class="input" type="text" name="title" placeholder="Title" required />
+  <input class="input" type="text" name="description" placeholder="Description" required />
+  <input class="input" type="text" name="category" placeholder="Category" required />
+  <input class="input" type="number" name="price" placeholder="Price" required />
+  <input class="input" type="number" name="stock" placeholder="Stock" required />
+  <button class="button" type="submit">Add Product</button>
 </form>
 
-<ul id="productList">
-  {{#each products}}
-    <li>
-      <h2>{{title}}</h2>
-      <p>{{description}}</p>
-      <p>${{price}}</p>
-      <p>{{stock}}</p>
-    </li>
-  {{/each}}
-</ul>
+<div id="productList" class="container">
+<div/>
 
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

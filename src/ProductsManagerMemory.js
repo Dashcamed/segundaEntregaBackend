@@ -38,6 +38,7 @@ class ProductManager {
       };
       this.products.push(newProduct);
       console.log("Producto creado:", newProduct);
+      return newProduct;
     } catch (error) {
       console.log("Error al crear el producto", error);
     }

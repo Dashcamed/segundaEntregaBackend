@@ -1,11 +1,12 @@
 <h1>Products with Websockets</h1>
 
-<ul>
+<div class="container" id="productList">
   {{#each products}}
-    <li>
-      <h2>{{title}}</h2>
+    <div class="card-product">
+      <h3>{{title}}</h3>
       <p>{{description}}</p>
       <p>${{price}}</p>
-    </li>
+      <p>{{stock}}</p>
+    </div>
   {{/each}}
-</ul>
+</>
