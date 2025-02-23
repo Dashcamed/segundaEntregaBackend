@@ -29,7 +29,7 @@ app.use(express.static(__dirname + "/public"));
 app.use("/", viewsRouter);
 
 io.on("connection", async (socket) => {
-  console.log("Cliente conectado");
+  console.log(`"cliente conectado" ${socket.id}`);
 
   const products = await productManager.getProducts();
   socket.emit("productList", products);
