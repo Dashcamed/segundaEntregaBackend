@@ -5,25 +5,6 @@ const productManager = new ProductManager();
 
 const router = Router();
 
-async function createDefaultProducts() {
-  try {
-    await productManager.createProduct({
-      title: "Pan de maiz",
-      description: "Pan hecho de maiz 100% natural",
-      category: "Panaderia",
-      price: 100,
-      stock: 10,
-    });
-    console.log(
-      "Producto por defecto creado:",
-      await productManager.getProducts()
-    );
-  } catch (error) {
-    console.log("Error al crear el producto", error);
-  }
-}
-createDefaultProducts();
-
 router.get("/", async (req, res) => {
   const products = await productManager.getProducts();
   res.render("index", { products });
@@ -40,8 +21,8 @@ router.post("/realTimeProducts", async (req, res) => {
     title,
     description,
     category,
-    price,
-    stock,
+    price: parseInt(price),
+    stock: parseInt(stock),
   });
   if (!newProduct) {
     return res.status(400).json({ error: "Error al crear el producto" });

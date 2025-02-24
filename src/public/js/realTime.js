@@ -1,5 +1,24 @@
 const socket = io();
 
+document
+  .getElementById("createProductForm")
+  .addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const product = Object.fromEntries(formData.entries());
+
+    socket.emit("product", product);
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Producto creado",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    event.target.reset();
+  });
+
 document.addEventListener("click", async (event) => {
   if (event.target.classList.contains("delete-button")) {
     const productId = event.target.getAttribute("data-id");

@@ -1,7 +1,28 @@
 import generateCode from "./randomCode.js";
 class ProductManager {
   constructor() {
-    this.products = [];
+    this.products = [
+      {
+        id: 448227208711,
+        code: "XAUYI56315",
+        status: true,
+        title: "Pan de papa",
+        description: "hecho de papa",
+        category: "panaderia",
+        price: "990",
+        stock: "90",
+      },
+      {
+        id: 859166159404,
+        code: "WSNUG40864",
+        status: true,
+        title: "Pan de maiz",
+        description: "Pan hecho de maiz 100% natural",
+        category: "Panaderia",
+        price: 100,
+        stock: 10,
+      },
+    ];
   }
 
   async getProducts() {

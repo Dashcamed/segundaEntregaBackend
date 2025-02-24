@@ -18,8 +18,6 @@ const httpServer = app.listen(8080, () =>
 
 const io = new Server(httpServer);
 
-app.set("socketio", io);
-
 app.engine("handlebars", handlebars.engine());
 app.set("views", __dirname + "/views");
 app.set("view engine", "handlebars");
@@ -38,12 +36,20 @@ io.on("connection", async (socket) => {
     await productManager.createProduct(data);
     const updatedProducts = await productManager.getProducts();
     io.emit("productList", updatedProducts);
+    io.emit("productCreated", data.title);
   });
 
   socket.on("deleteProduct", async (id) => {
-    console.log(`Eliminando producto con ID: ${id}`);
+    const product = await productManager.getProductById(id);
+
+    if (!product) {
+      return;
+    }
+
     await productManager.deleteProduct(id);
     const updatedProducts = await productManager.getProducts();
+
     io.emit("productList", updatedProducts);
+    io.emit("productDeleted", product.title);
   });
 });
